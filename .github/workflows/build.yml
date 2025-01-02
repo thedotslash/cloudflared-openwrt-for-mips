@@ -112,7 +112,7 @@ jobs:
         - name: Upload release build artifacts to GitHub Release
           uses: softprops/action-gh-release@v2
           with:
-            name: Openwrt-Cloudflared-${{ needs.check-version.outputs.latest_versions }}-MIPS
+            name: Cloudflared-Openwrt-${{ needs.check-version.outputs.latest_versions }}-MIPS
             tag_name: ${{ env.CURRENT_DATE }}
             draft: false
             make_latest: true
