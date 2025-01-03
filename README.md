@@ -77,13 +77,13 @@ This repo contains:
 **Start the services**
 
   ```sh
-  services cloudflared start
+  /etc/init.d/cloudflared start
   ```
 
 **Enable service on boot**
 
   ```sh
-  service cloudflared enable
+  /etc/init.d/cloudflared enable
   ```
 
   other available options:
