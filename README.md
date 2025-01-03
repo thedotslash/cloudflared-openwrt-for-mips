@@ -9,7 +9,7 @@ This repo has a version of cloudflared (Cloudflare Tunnel client) that works on 
 
 ## How It Works
 
-- Every 2 hours, a [GitHub Actions job](https://github.com/notsudoers/cloudflared-openwrt-for-mips/actions) will be checks if there’s a new version of [official Cloudflared releases](https://github.com/cloudflare/cloudflared/releases/latest).  
+- Every day at 00:00, a [GitHub Actions job](https://github.com/notsudoers/cloudflared-openwrt-for-mips/actions) will be checks if there’s a new version of [official Cloudflared releases](https://github.com/cloudflare/cloudflared/releases/latest).  
 - If there’s an update, it compiles the new version and drops it in the [Releases](https://github.com/notsudoers/cloudflared-openwrt-for-mips/releases/latest).
 
 
