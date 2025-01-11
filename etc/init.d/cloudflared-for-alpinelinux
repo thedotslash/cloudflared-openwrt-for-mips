@@ -1,0 +1,29 @@
+#!/sbin/openrc-run
+
+#token=
+name=${RC_SVCNAME}
+command="/usr/bin/cloudflared"
+pidfile=/run/${RC_SVCNAME}.pid
+command_args="--protocol auto --pidfile $pidfile --autoupdate-freq 24h0m0s tunnel run --token $token"
+command_user=root
+output_log="/var/log/${RC_SVCNAME}.log"
+error_log="/var/log/${RC_SVCNAME}.err"
+
+depend() {
+        after networking
+}
+
+start() {
+        ebegin "Starting $name"
+        start-stop-daemon --start \
+                --quiet \
+                --background \
+                --user ${command_user} \
+                --stdout ${output_log} \
+                --stderr ${error_log} \
+                --make-pidfile \
+                --pidfile ${pidfile} \
+                --exec ${command} \
+                -- ${command_args}
+        eend $?
+}
