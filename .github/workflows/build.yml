@@ -66,18 +66,26 @@ jobs:
         with:
           go-version: 1.23.4
           
-      - name: Compile code
-        env:
-          CGO_ENABLED: 0
-          GOOS: linux
-          GOARCH: mipsle
-          GOMIPS: softfloat
-          LDFLAGS: "-s -w -extldflags=-static"
+      - name: Compile Go dev cloudflared
         run: |
-          export BUILDTIME=$(date -u '+%Y-%m-%d-%H%M UTC')
-          go build -a -installsuffix cgo -o $(pwd)/cloudflared-mips \
-          -ldflags="-X 'main.Version=${{ needs.check-version.outputs.latest_versions }}' -X 'main.BuildTime=$BUILDTIME' -X 'main.BuildType=MIPS' $LDFLAGS" \
-          $(pwd)/cmd/cloudflared
+          .teamcity/install-cloudflare-go.sh
+
+      - name: Compile code
+        # env:
+        #   CGO_ENABLED: 0
+        #   GOOS: linux
+        #   GOARCH: mipsle
+        #   GOMIPS: softfloat
+        #   LDFLAGS: "-s -w -extldflags=-static"
+        # run: |
+        #   export BUILDTIME=$(date -u '+%Y-%m-%d-%H%M UTC')
+        #   go build -a -installsuffix cgo -o $(pwd)/cloudflared-mips \
+        #   -ldflags="-X 'main.Version=${{ needs.check-version.outputs.latest_versions }}' -X 'main.BuildTime=$BUILDTIME' -X 'main.BuildType=MIPS' $LDFLAGS" \
+        #   $(pwd)/cmd/cloudflared
+        run: |
+          .teamcity/install-cloudflare-go.sh
+          CGO_ENABLED=0 GOOS=linux GOARCH=mipsle GOMIPS=softfloat PATH="/tmp/go/bin:$PATH" make cloudflared
+          mv cloudflared $(pwd)/cloudflared-mips || exit 1
           
       - name: Archive build
         uses: actions/upload-artifact@v4
