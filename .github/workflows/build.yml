@@ -1,6 +1,6 @@
 name: CI Build Cloudflared Openwrt for MIPS
 on:
-  push:
+  # push:
     # branches:
     #   - main
   schedule:
