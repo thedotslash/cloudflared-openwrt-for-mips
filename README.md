@@ -9,8 +9,8 @@ This repo has a version of cloudflared (Cloudflare Tunnel client) that works on 
 
 ## How It Works
 
-- Every day at 00:00, a [GitHub Actions job](https://github.com/notsudoers/cloudflared-openwrt-for-mips/actions) will be checks if there’s a new version of [official Cloudflared releases](https://github.com/cloudflare/cloudflared/releases/latest).  
-- If there’s an update, it compiles the new version and drops it in the [Releases](https://github.com/notsudoers/cloudflared-openwrt-for-mips/releases/latest).
+- Every day at 00:00, a [GitHub Actions job](https://github.com/devxvda/cloudflared-openwrt-for-mips/actions) will be checks if there’s a new version of [official Cloudflared releases](https://github.com/cloudflare/cloudflared/releases/latest).  
+- If there’s an update, it compiles the new version and drops it in the [Releases](https://github.com/devxvda/cloudflared-openwrt-for-mips/releases/latest).
 
 
 ## Contents
@@ -26,14 +26,14 @@ This repo contains:
 - using aria2
 
   ```sh
-  aria2c $(curl -s https://api.github.com/repos/notsudoers/cloudflared-openwrt-for-mips/releases/latest | jq -r '.assets[] | select(.name | contains ("tar.gz")) | .browser_download_url' | head -n 1) \
+  aria2c $(curl -s https://api.github.com/repos/devxvda/cloudflared-openwrt-for-mips/releases/latest | jq -r '.assets[] | select(.name | contains ("tar.gz")) | .browser_download_url' | head -n 1) \
   -o cloudflared-mips-latest.tar.gz
   ```
 
 - using wget
 
   ```sh
-  wget $(curl -s https://api.github.com/repos/notsudoers/cloudflared-openwrt-for-mips/releases/latest | jq -r '.assets[] | select(.name | contains ("tar.gz")) | .browser_download_url' | head -n 1) \
+  wget $(curl -s https://api.github.com/repos/devxvda/cloudflared-openwrt-for-mips/releases/latest | jq -r '.assets[] | select(.name | contains ("tar.gz")) | .browser_download_url' | head -n 1) \
   --no-check-certificate -O cloudflared-mips-latest.tar.gz
   ```
 
@@ -50,13 +50,13 @@ This repo contains:
 - Using aria2
 
   ```sh
-  aria2c https://raw.githubusercontent.com/notsudoers/cloudflared-openwrt-for-mips/main/etc/init.d/cloudflared -o /etc/init.d/cloudflared
+  aria2c https://raw.githubusercontent.com/devxvda/cloudflared-openwrt-for-mips/main/etc/init.d/cloudflared -o /etc/init.d/cloudflared
   ```
 
 - Using wget
 
   ```sh
-  wget https://raw.githubusercontent.com/notsudoers/cloudflared-openwrt-for-mips/main/etc/init.d/cloudflared --no-check-certificate -O /etc/init.d/cloudflared
+  wget https://raw.githubusercontent.com/devxvda/cloudflared-openwrt-for-mips/main/etc/init.d/cloudflared --no-check-certificate -O /etc/init.d/cloudflared
   ```
 
 - Change permissions
